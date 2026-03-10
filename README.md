@@ -16,4 +16,11 @@ and pooling layers followed by two fully connected layers to classify programs i
 
 ## Problem Statement
 <details>
-<summary>Section 1 : Introduction</summary>
+<summary>Introduction</summary>
+Each year, software vulnerabilities are discovered, which pose significant risks of exploitation and system compromise. The authors present a convolutional neural network (CNN) model to automatically identify bugs/vulnerabilities in C source code.
+  
+<p> The key challenges they address: <br>
+1. Detecting software vulnerabilities in source code automatically <br>
+2. The need for large-scale vulnerability detection systems using machine learning <br>
+3. Specialized detection techniques for C programs (unlike prior work that covered both C and C++) <br>
+</p>
