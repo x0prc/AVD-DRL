@@ -24,3 +24,57 @@ Each year, software vulnerabilities are discovered, which pose significant risks
 2. The need for large-scale vulnerability detection systems using machine learning <br>
 3. Specialized detection techniques for C programs (unlike prior work that covered both C and C++) <br>
 </p>
+</details>
+
+## Flowchart
+```mermaid
+flowchart TB
+    subgraph G1["Data Pipeline"]
+        direction LR
+        A["Install<br/>Dependencies"] --> B["Import<br/>Libraries"]
+        B --> C["Tokenize C Code<br/>91 Categories"]
+        C --> D["Binary Matrix<br/>8-bit Encoding"]
+    end
+    
+    subgraph G2["Dataset"]
+        direction LR
+        D --> E["Create Dataset<br/>Source + CWE Labels"]
+        E --> F["Train/Val/Test<br/>Split"]
+        F --> G["DataLoaders<br/>Balanced Sampler"]
+    end
+    
+    subgraph G3["Model Architecture"]
+        direction LR
+        H["Input<br/>(batch,500,8)"] --> I["Conv1<br/>(3,8) kernel"]
+        I --> J["Conv2<br/>(3,1) kernel"]
+        J --> K["Conv3<br/>(3,1) kernel"]
+        K --> L["Global<br/>MaxPool"]
+        L --> M["FC Layers<br/>256→128→5"]
+        M --> N["Sigmoid<br/>Output"]
+    end
+    
+    subgraph G4["Training"]
+        direction LR
+        O["Forward<br/>Pass"] --> P["Compute<br/>BCE Loss"]
+        P --> Q["Back<br/>Propagation"]
+        Q --> R["Adam<br/>Optimizer"]
+        R --> S{"Epoch<br/>Loop"}
+        S -->|Yes| O
+        S -->|No| T["Save<br/>Best Model"]
+    end
+    
+    subgraph G5["Evaluation & Inference"]
+        direction LR
+        T --> U["Load Best<br/>Model"]
+        U --> V["Precision-Recall<br/>Curves"]
+        V --> W["Classification<br/>Report"]
+        W --> X["New Code<br/>Inference"]
+        X --> Y["Vulnerability<br/>Prediction"]
+    end
+    
+    G1 --> G2
+    G2 --> G3
+    G3 --> G4
+    G4 --> G5
+```
+
